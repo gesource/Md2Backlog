@@ -17,7 +17,7 @@ jobs:
       - name: Build macOS ARM64
         run: ./gradlew :cli:renameReleaseExecutableMacosArm64
       - name: Copy binary for upload
-        run: cp cli/build/bin/macosArm64/releaseExecutable/md2backlog md2backlog-macos-arm64
+        run: cp cli/build/bin/macosArm64/releaseExecutable/md2backlog md2backlog
       - name: Build macOS Desktop App
         run: ./gradlew :desktop-app:packagePkg
       - name: Copy Desktop App
@@ -26,7 +26,7 @@ jobs:
         with:
           name: macos-arm64
           path: |
-            md2backlog-macos-arm64
+            md2backlog
             Md2Backlog-macos.pkg
 
   build-windows:
@@ -40,7 +40,7 @@ jobs:
       - name: Build Windows x64
         run: .\gradlew.bat :cli:linkReleaseExecutableMingwX64
       - name: Rename binary
-        run: cp cli\build\bin\mingwX64\releaseExecutable\md2backlog.exe md2backlog-windows-x64.exe
+        run: cp cli\build\bin\mingwX64\releaseExecutable\md2backlog.exe md2backlog.exe
       - name: Build Windows Desktop App
         run: .\gradlew.bat :desktop-app:packageMsi
       - name: Copy Desktop App
@@ -49,7 +49,7 @@ jobs:
         with:
           name: windows-x64
           path: |
-            md2backlog-windows-x64.exe
+            md2backlog.exe
             Md2Backlog-windows.msi
 
   release:
@@ -66,8 +66,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           files: |
-            artifacts/md2backlog-macos-arm64
+            artifacts/md2backlog
             artifacts/Md2Backlog-macos.pkg
-            artifacts/md2backlog-windows-x64.exe
+            artifacts/md2backlog.exe
             artifacts/Md2Backlog-windows.msi
           generate_release_notes: true
